@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+in
 {
-  imports = [ <home-manager/nixos> ];
-
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebkit-5.212.0-alpha4"
+  imports = [
+    (import "${home-manager}/nixos")
   ];
+
 #  nixpkgs.hostPlatform = {
 #    gcc.arch = "tigerlake";
 #    gcc.tune = "tigerlake";
@@ -27,6 +28,21 @@
       onlyoffice-bin
       fastfetch
       stress-ng
+      acpi
+      armcord
+      bat
+      brightnessctl
+      btop
+      firefox
+      home-manager-path
+      kate
+      nwg-look
+      pwvucontrol
+      qbittorrent
+      stremio-shell
+      texlive-medium
+      texstudio
+      wlsunset
     ];
 
     programs.fish.shellAliases = {
