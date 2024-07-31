@@ -6,11 +6,11 @@
 
 {
   nix.settings.system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" "gccarch-tigerlake" ];
-  nixpkgs.hostPlatform = {
-    gcc.arch = "tigerlake";
-    gcc.tune = "tigerlake";
-    system = "x86_64-linux";
-  };
+#  nixpkgs.hostPlatform = {
+#    gcc.arch = "tigerlake";
+#    gcc.tune = "tigerlake";
+#    system = "x86_64-linux";
+#  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -63,8 +63,8 @@
   services.tlp = {
       enable = true;
       settings = {
-        CPU_DRIVER_OPMODE_ON_AC=active
-        CPU_DRIVER_OPMODE_ON_BAT=active
+        CPU_DRIVER_OPMODE_ON_AC="active";
+        CPU_DRIVER_OPMODE_ON_BAT="active";
 
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

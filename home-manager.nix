@@ -6,11 +6,11 @@
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebkit-5.212.0-alpha4"
   ];
-  nixpkgs.hostPlatform = {
-    gcc.arch = "tigerlake";
-    gcc.tune = "tigerlake";
-    system = "x86_64-linux";
-  };
+#  nixpkgs.hostPlatform = {
+#    gcc.arch = "tigerlake";
+#    gcc.tune = "tigerlake";
+#    system = "x86_64-linux";
+#  };
 
   home-manager.users.harry = {
     /* The home.stateVersion option does not have a default and must be set */
