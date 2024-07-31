@@ -31,8 +31,6 @@
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
 
-
-
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -76,6 +74,25 @@
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 20;
 
+	DISK_DEVICES="nvme0n1";
+
+	DISK_APM_LEVEL_ON_AC="254 254";
+	DISK_APM_LEVEL_ON_BAT="128 128";
+
+	DISK_SPINDOWN_TIMEOUT_ON_AC="0 0";
+	DISK_SPINDOWN_TIMEOUT_ON_BAT="30 30";
+
+	DISK_IOSCHED="mq-deadline mq-deadline";
+
+	PLATFORM_PROFILE_ON_AC="performance";
+	PLATFORM_PROFILE_ON_BAT="low-power";
+
+	RUNTIME_PM_ON_AC="on";
+	RUNTIME_PM_ON_BAT="auto";
+
+	PCIE_ASPM_ON_AC="default";
+	PCIE_ASPM_ON_BAT="powersave";
+
        #Optional helps save long term battery health
        # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
        # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
@@ -102,6 +119,8 @@
     nerdfonts
     meslo-lgs-nf
   ];
+  
+  services.gvfs.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

@@ -23,8 +23,29 @@
       spotify
       freetube
       nixnote2
-      bibata-cursor
+      bibata-cursors
       onlyoffice-bin
+      fastfetch
     ];
+
+    programs.fish.shellAliases = {
+      vim = "nvim";
+      configsys = "nvim /etc/nixos/configuration.nix";
+      confighome = "nvim /etc/nixos/home-manager.nix";
+      rebuildsys = "sudo nixos-rebuild switch";
+      configbar = "nvim ~/.config/waybar/config.jsonc";
+      configland = "nvim ~/.config/hypr/hyrpland.conf";
+    };
+
+    programs.kitty = {
+      enable = true;
+      settings = {
+        confirm_os_window_close = 0;
+	dynamic_background_opacity = true;
+	enable_audio_bell = true;
+	background_opacity = "0.5";
+	background_blur = "5";
+      };
+    };
   };
 }
