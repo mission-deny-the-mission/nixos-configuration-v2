@@ -26,6 +26,7 @@
       bibata-cursors
       onlyoffice-bin
       fastfetch
+      stress-ng
     ];
 
     programs.fish.shellAliases = {
@@ -41,10 +42,10 @@
       enable = true;
       settings = {
         confirm_os_window_close = 0;
-	dynamic_background_opacity = true;
-	enable_audio_bell = true;
-	background_opacity = "0.5";
-	background_blur = "5";
+        dynamic_background_opacity = true;
+        enable_audio_bell = true;
+        background_opacity = "0.5";
+        background_blur = "5";
       };
     };
   };

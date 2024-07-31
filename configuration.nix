@@ -63,6 +63,9 @@
   services.tlp = {
       enable = true;
       settings = {
+        CPU_DRIVER_OPMODE_ON_AC=active
+        CPU_DRIVER_OPMODE_ON_BAT=active
+
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
@@ -72,26 +75,26 @@
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+        CPU_MAX_PERF_ON_BAT = 80;
 
-	DISK_DEVICES="nvme0n1";
+        DISK_DEVICES="nvme0n1";
 
-	DISK_APM_LEVEL_ON_AC="254 254";
-	DISK_APM_LEVEL_ON_BAT="128 128";
+        DISK_APM_LEVEL_ON_AC="254 254";
+        DISK_APM_LEVEL_ON_BAT="128 128";
 
-	DISK_SPINDOWN_TIMEOUT_ON_AC="0 0";
-	DISK_SPINDOWN_TIMEOUT_ON_BAT="30 30";
+        DISK_SPINDOWN_TIMEOUT_ON_AC="0 0";
+        DISK_SPINDOWN_TIMEOUT_ON_BAT="30 30";
 
-	DISK_IOSCHED="mq-deadline mq-deadline";
+        DISK_IOSCHED="mq-deadline mq-deadline";
 
-	PLATFORM_PROFILE_ON_AC="performance";
-	PLATFORM_PROFILE_ON_BAT="low-power";
+        PLATFORM_PROFILE_ON_AC="performance";
+        PLATFORM_PROFILE_ON_BAT="balanced";
 
-	RUNTIME_PM_ON_AC="on";
-	RUNTIME_PM_ON_BAT="auto";
+        RUNTIME_PM_ON_AC="on";
+        RUNTIME_PM_ON_BAT="auto";
 
-	PCIE_ASPM_ON_AC="default";
-	PCIE_ASPM_ON_BAT="powersave";
+        PCIE_ASPM_ON_AC="default";
+        PCIE_ASPM_ON_BAT="powersave";
 
        #Optional helps save long term battery health
        # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
@@ -192,6 +195,7 @@
     lm_sensors
     git
     gh
+    vulnix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
