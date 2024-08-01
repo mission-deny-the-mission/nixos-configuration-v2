@@ -31,6 +31,25 @@
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
 
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
+
+  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+    "monitor.bluez.properties" = {
+        "bluez5.enable-sbc-xq" = true;
+        "bluez5.enable-msbc" = true;
+        "bluez5.enable-hw-volume" = true;
+        "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+    };
+  };
+
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -128,14 +147,6 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
   programs.hyprland = {
     enable = true; 
   };
@@ -160,7 +171,7 @@
   users.users.harry = {
     shell = pkgs.fish;
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "input" "docker" "audio" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
     ];
   };
