@@ -196,6 +196,7 @@
     git
     gh
     vulnix
+    bat
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
