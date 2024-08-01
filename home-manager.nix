@@ -36,12 +36,14 @@ in
       kate
       nwg-panel
       pwvucontrol
+      pavucontrol
       qbittorrent
       stremio
       texlive.combined.scheme-medium
       texstudio
       wlsunset
       hyprshade
+      strawberry
     ];
 
     programs.fish.enable = true;
@@ -95,6 +97,7 @@ in
         "$mod, F, exec, dolphin"
         "ALT, F2, exec, wofi --show run"
         "$mod, D, exec, wofi --show drun"
+        "$mod, M, exit"
         "$mod, C, killactive,"
         ", XF86AudioRaiseVolume, exec, wpctl set-sink-volume @DEFAULT_SINK@ +5%"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"

@@ -31,6 +31,10 @@
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
 
+  hardware.enableAllFirmware  = true;
+
+  sound.enable = true;
+  nixpkgs.config.pipewire = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -208,6 +212,7 @@
     gh
     vulnix
     bat
+    lsof
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
