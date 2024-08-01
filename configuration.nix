@@ -24,7 +24,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+  #boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
   services.ananicy = {
     enable = true;
@@ -33,7 +33,7 @@
 
   hardware.enableAllFirmware  = true;
 
-  sound.enable = true;
+  sound.enable = false;
   nixpkgs.config.pipewire = true;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -44,6 +44,8 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
+  #hardware.pulseaudio.enable = true;
+  #hardware.pulseaudio.support32Bit = true;
 
   services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
     "monitor.bluez.properties" = {
@@ -78,6 +80,8 @@
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
+
+  services.flatpak.enable = true;
 
   programs.dconf.enable = true;
 
@@ -141,7 +145,7 @@
   services.xserver.xkb.layout = "gb";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     nerdfonts
     meslo-lgs-nf
   ];
@@ -154,7 +158,10 @@
   programs.hyprland = {
     enable = true; 
   };
-  services.dbus.enable = true;
+
+  services.dbus = {
+    enable = true;
+  };
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -162,6 +169,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
@@ -171,11 +179,13 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  programs.adb.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.harry = {
     shell = pkgs.fish;
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "docker" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "input" "docker" "audio" "adbusers" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
     ];
   };
@@ -213,6 +223,7 @@
     vulnix
     bat
     lsof
+    android-tools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -226,7 +237,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

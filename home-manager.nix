@@ -22,7 +22,7 @@ in
       ranger
       vlc
       spotify
-      freetube
+      #freetube
       bibata-cursors
       onlyoffice-bin
       fastfetch
@@ -44,6 +44,10 @@ in
       wlsunset
       hyprshade
       strawberry
+      distrobox
+      unzip
+      ark
+      pcmanfm
     ];
 
     programs.fish.enable = true;
@@ -94,15 +98,16 @@ in
       bind = [
         "$mod, W, exec, qutebrowser"
         "$mod, T, exec, kitty"
-        "$mod, F, exec, dolphin"
+        "$mod, F, exec, pcmanfm"
         "ALT, F2, exec, wofi --show run"
         "$mod, D, exec, wofi --show drun"
+        "$mod, O ,exec, swaylock"
         "$mod, M, exit"
         "$mod, C, killactive,"
-        ", XF86AudioRaiseVolume, exec, wpctl set-sink-volume @DEFAULT_SINK@ +5%"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, wpctl set-sink-mute @DEFAULT_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-source-mute @DEFAULT_SOURCE@ toggle"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
         ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
         ", xf86KbdBrightnessUp, exec, brightnessctl -d *::kbd_backlight set +33%"
