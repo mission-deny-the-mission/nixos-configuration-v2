@@ -5,10 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  nix.settings.system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" "gccarch-tigerlake" ];
+  nix.settings.system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" "gccarch-znver2" ];
 #  nixpkgs.hostPlatform = {
-#    gcc.arch = "tigerlake";
-#    gcc.tune = "tigerlake";
+#    gcc.arch = "znver2";
+#    gcc.tune = "znver2";
 #    system = "x86_64-linux";
 #  };
 
@@ -23,6 +23,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  fileSystems."/four-used-zfs-drives-raidz" = {
+    device = "192.168.0.30:/four-used-zfs-drives-raidz";
+    fsType = "nfs";
+    options = ["x-systemd.automount" "noauto"];
+  };
+
 
   #boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
@@ -46,6 +53,14 @@
   };
   #hardware.pulseaudio.enable = true;
   #hardware.pulseaudio.support32Bit = true;
+
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
     "monitor.bluez.properties" = {
@@ -194,6 +209,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    dig
     wget
     hyprlock
     hyprpaper
