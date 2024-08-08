@@ -8,8 +8,8 @@ in
   ];
 
 #  nixpkgs.hostPlatform = {
-#    gcc.arch = "tigerlake";
-#    gcc.tune = "tigerlake";
+#    gcc.arch = "znver2";
+#    gcc.tune = "znver2";
 #    system = "x86_64-linux";
 #  };
 
@@ -53,6 +53,8 @@ in
       tusk
       python3
       galculator
+      playerctl
+      mpv
     ];
 
     programs.fish.enable = true;
@@ -125,6 +127,9 @@ windowrule=float,pwvucontrol
         ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
         ", xf86KbdBrightnessUp, exec, brightnessctl -d *::kbd_backlight set +33%"
         ", xf86KbdBrightnessDown, exec, brightnessctl -d *::kbd_backlight set 33%-"
+	", mouse:277, workspace, e+1"
+	", mouse:278, workspace, e-1"
+	", mouse:279, exec, playerctl play-pause"
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"

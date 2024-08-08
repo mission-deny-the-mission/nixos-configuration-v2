@@ -14,6 +14,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
+#  mkForce = mkOverride 50;
+#  systemd.services.nix-daemon.serviceConfig.LimitNOFILE = mkDefault 2048576;
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -31,7 +34,7 @@
   };
 
 
-  #boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
   services.ananicy = {
     enable = true;
@@ -240,6 +243,7 @@
     bat
     lsof
     android-tools
+    parted
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
